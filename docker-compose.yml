@@ -31,5 +31,5 @@ services:
     restart: always
     env_file:
       - ./.env
-    volumes:
-      - ./db-volume:/var/lib/mysql
+    # volumes:
+    #   - ./db-volume:/var/lib/mysql
