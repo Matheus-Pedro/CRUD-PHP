@@ -1,5 +1,5 @@
 # Micro E-commerce
-![Header do Site](images/fotosite.png)
+![Header do Site](www/images/fotosite.png)
 
 ## Tecnologias básicas
 O catálogo foi desenvolvido utilizando o tríade básica do front-end (HTML, CSS, Javascript). Foi desenvolvido para testar e aprimorar habilidades relacionadas no desenvolvimento web.
