@@ -2,10 +2,10 @@
 
 require 'database.php';
 
-// Buscar todos os vendedores
+// Buscar todos os usuários
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     try {
-        $stmt = $conn->query('SELECT * FROM Sellers');
+        $stmt = $conn->query('SELECT * FROM Users');
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         header('Content-Type: application/json');
         echo json_encode($products);
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 }
 
-// Adicionar um novo vendedor
+// Adicionar um novo usuário
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $data['email'];
 
     try {
-        $stmt = $conn->prepare('INSERT INTO Sellers (name, email) VALUES (:name, :email);');
+        $stmt = $conn->prepare('INSERT INTO Users (name, email) VALUES (:name, :email);');
         
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         $productId = $conn->lastInsertId();
 
-        $stmt = $conn->prepare('SELECT * FROM Sellers WHERE id = :id');
+        $stmt = $conn->prepare('SELECT * FROM Users WHERE id = :id');
         $stmt->bindParam(':id', $productId);
         $stmt->execute();
 
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Editar um vendedor
+// Editar um usuário
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $data = json_decode(file_get_contents('php://input'), true);
 
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $cpf_cnpj = isset($data['cpf_cnpj']) ? $data['cpf_cnpj'] : null;
 
     try {
-        $stmt = $conn->prepare('UPDATE Sellers 
+        $stmt = $conn->prepare('UPDATE Users 
             SET name = COALESCE(:name, name), 
                 email = COALESCE(:email, email), 
                 fone_number = COALESCE(:fone_number, fone_number), 
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     }
 }
 
-// Deletar uma vendedor
+// Deletar uma usuário
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $data = json_decode(file_get_contents('php://input'), true);
 
@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $productId = $data['id'];
 
     try {
-        $stmt = $conn->prepare('DELETE FROM Sellers WHERE id = :id');
+        $stmt = $conn->prepare('DELETE FROM Users WHERE id = :id');
         $stmt->bindParam(':id', $productId);
         $stmt->execute();
         echo json_encode(['sucess' => true]);
