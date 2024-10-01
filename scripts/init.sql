@@ -14,6 +14,26 @@ CREATE TABLE IF NOT EXISTS Products (
 );
 
 
+CREATE TABLE IF NOT EXISTS Sellers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    fone_number VARCHAR(20) DEFAULT NULL,
+    cpf_cnpj VARCHAR(20) DEFAULT NULL,
+    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE IF NOT EXISTS Users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    fone_number VARCHAR(20) DEFAULT NULL,
+    cpf_cnpj VARCHAR(20) DEFAULT NULL,
+    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
 -- Criação da tabela de avaliações dos produtos
 CREATE TABLE IF NOT EXISTS AvaliationsProduct (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -21,9 +41,5 @@ CREATE TABLE IF NOT EXISTS AvaliationsProduct (
     comment TEXT,
     product_id INT,
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+    FOREIGN KEY (product_id) REFERENCES Products(id) ON DELETE CASCADE
 );
-
-
-INSERT INTO Products (title, description, url_image, price)
-VALUES ('Fitness Tracker', 'A high-quality fitness tracker with multiple sensors.', 'https://example.com/fitness-tracker.jpg', 99.99);
