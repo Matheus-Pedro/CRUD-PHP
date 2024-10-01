@@ -1,10 +1,8 @@
-let produtos = [];
-let vendedores = [];
-let usuarios = [];
-let enderecos = [];
-let avaliacoesProdutos = [];
-let avaliacoesVendedores = [];
-let statusVendedores = [];
+document.addEventListener('DOMContentLoaded', () => {
+    fetchProducts();
+    fetchSellers();
+    fetchUsers();
+});
 
 function openForm(formId) {
     document.getElementById(formId).style.display = 'block';
@@ -12,203 +10,304 @@ function openForm(formId) {
 
 function cancelAdd(formId) {
     document.getElementById(formId).style.display = 'none';
-    document.getElementById(formId).reset();
+    document.getElementById(formId).reset(); 
+}
+
+function fetchProducts() {
+    fetch('./api/products.php')
+        .then(response => response.json())
+        .then(data => {
+            const productTableBody = document.getElementById('productTableBody');
+            productTableBody.innerHTML = '';
+            data.forEach(product => {
+                productTableBody.innerHTML += `
+                    <tr>
+                        <td>${product.title}</td>
+                        <td>${product.description}</td>
+                        <td><img src="${product.url_image}" alt="${product.title}" width="50" height="50"></td>
+                        <td>${product.price}</td>
+                        <td>${(product.discount * 100).toFixed(2)}%</td>
+                        <td>${product.sales_count}</td>
+                        <td>${product.stock}</td>
+                        <td>
+                            <button onclick="editProduct(${product.id}, '${product.title}', '${product.description}', ${product.price}, '${product.url_image}')" class="btn btn-warning">Editar</button>
+                            <button onclick="deleteProduct(${product.id})" class="btn btn-danger">Excluir</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        })
+        .catch(error => console.error('Erro ao buscar produtos:', error));
 }
 
 function addProduct(event) {
     event.preventDefault();
     const product = {
-        id: produtos.length + 1,
-        title: document.getElementById('title').value,
-        description: document.getElementById('description').value,
-        price: parseFloat(document.getElementById('price').value),
-        discount: parseFloat(document.getElementById('discount').value),
-        url_image: document.getElementById('url_image').value,
-        sales_count: parseInt(document.getElementById('sales_count').value),
-        avaliation: parseFloat(document.getElementById('avaliation').value),
-        saller_id: parseInt(document.getElementById('saller_id').value)
+        title: document.getElementById('product_title').value,
+        description: document.getElementById('product_description').value,
+        price: document.getElementById('product_price').value,
+        url_image: document.getElementById('product_url_image').value
     };
-    produtos.push(product);
-    displayProducts();
-    cancelAdd('productForm');
+
+    fetch('./api/products.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(product)
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao adicionar produto');
+        return response.json();
+    })
+    .then(() => {
+        fetchProducts();
+        cancelAdd('productForm');
+    })
+    .catch(error => console.error('Erro ao adicionar produto:', error));
 }
 
-function displayProducts() {
-    const productList = document.getElementById('product-list');
-    productList.innerHTML = '<h3>Lista de Produtos</h3>' + produtos.map(p => `
-        <div class="card mb-2">
-            <div class="card-body">
-                <h5 class="card-title">${p.title}</h5>
-                <p class="card-text">${p.description}</p>
-                <p>Preço: R$ ${p.price.toFixed(2)}</p>
-                <p>Desconto: ${p.discount}%</p>
-                <p>Quantidade Vendida: ${p.sales_count}</p>
-                <p>Avaliação: ${p.avaliation}</p>
-                <p>ID do Vendedor: ${p.saller_id}</p>
-            </div>
-        </div>
-    `).join('');
+function editProduct(productId, title, description, price, url_image) {
+    document.getElementById('product_title').value = title;
+    document.getElementById('product_description').value = description;
+    document.getElementById('product_price').value = price;
+    document.getElementById('product_url_image').value = url_image;
+
+    const productForm = document.getElementById('productForm');
+    productForm.onsubmit = (event) => updateProduct(event, productId);
+    openForm('productForm');
 }
 
-function addVendedor(event) {
+function updateProduct(event, productId) {
     event.preventDefault();
-    const vendedor = {
-        id: vendedores.length + 1,
-        name: document.getElementById('vendedor_name').value,
-        phone_number: document.getElementById('phone_number').value,
-        cpf_cnpj: document.getElementById('cpf_cnpj').value,
-        avaliation_id: parseInt(document.getElementById('avaliation_id').value),
-        address: document.getElementById('vendedor_address').value
+    const product = {
+        title: document.getElementById('product_title').value,
+        description: document.getElementById('product_description').value,
+        price: document.getElementById('product_price').value,
+        url_image: document.getElementById('product_url_image').value
     };
-    vendedores.push(vendedor);
-    displayVendedores();
-    cancelAdd('vendedorForm');
+
+    fetch(`./api/products.php?id=${productId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(product)
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao editar produto');
+        return response.json();
+    })
+    .then(() => {
+        fetchProducts();
+        cancelAdd('productForm');
+    })
+    .catch(error => console.error('Erro ao editar produto:', error));
 }
 
-function displayVendedores() {
-    const vendedorList = document.getElementById('vendedor-list');
-    vendedorList.innerHTML = '<h3>Lista de Vendedores</h3>' + vendedores.map(v => `
-        <div class="card mb-2">
-            <div class="card-body">
-                <h5 class="card-title">${v.name}</h5>
-                <p class="card-text">Telefone: ${v.phone_number}</p>
-                <p>CPF/CNPJ: ${v.cpf_cnpj}</p>
-                <p>ID da Avaliação: ${v.avaliation_id}</p>
-                <p>Endereço: ${v.address}</p>
-            </div>
-        </div>
-    `).join('');
+function deleteProduct(productId) {
+    fetch(`./api/products.php?id=${productId}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao excluir produto');
+        fetchProducts(); 
+    })
+    .catch(error => console.error('Erro ao excluir produto:', error));
+}
+
+function fetchSellers() {
+    fetch('./api/sellers.php')
+        .then(response => response.json())
+        .then(data => {
+            const vendedorTableBody = document.getElementById('vendedorTableBody');
+            vendedorTableBody.innerHTML = '';
+            data.forEach(vendedor => {
+                vendedorTableBody.innerHTML += `
+                    <tr>
+                        <td>${vendedor.name}</td>
+                        <td>${vendedor.email}</td>
+                        <td>${vendedor.fone_number}</td>
+                        <td>${vendedor.cpf_cnpj}</td>
+                        <td>
+                            <button onclick="editSeller(${vendedor.id}, '${vendedor.name}', '${vendedor.email}')" class="btn btn-warning">Editar</button>
+                            <button onclick="deleteSeller(${vendedor.id})" class="btn btn-danger">Excluir</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        })
+        .catch(error => console.error('Erro ao buscar vendedores:', error));
+}
+
+function addSeller(event) {
+    event.preventDefault();
+    const seller = {
+        name: document.getElementById('seller_name').value,
+        email: document.getElementById('seller_email').value,
+        fone_number: '',
+        cpf_cnpj: ''
+    };
+
+    fetch('./api/sellers.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(seller)
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao adicionar vendedor');
+        return response.json();
+    })
+    .then(() => {
+        fetchSellers();
+        cancelAdd('vendedorForm');
+    })
+    .catch(error => console.error('Erro ao adicionar vendedor:', error));
+}
+
+function editSeller(sellerId, name, email) {
+    document.getElementById('seller_name').value = name;
+    document.getElementById('seller_email').value = email;
+
+    const vendedorForm = document.getElementById('vendedorForm');
+    vendedorForm.onsubmit = (event) => updateSeller(event, sellerId);
+    openForm('vendedorForm');
+}
+
+function updateSeller(event, sellerId) {
+    event.preventDefault();
+    const seller = {
+        name: document.getElementById('seller_name').value,
+        email: document.getElementById('seller_email').value,
+        fone_number: '',
+        cpf_cnpj: ''
+    };
+
+    fetch(`./api/sellers.php?id=${sellerId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(seller)
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao editar vendedor');
+        return response.json();
+    })
+    .then(() => {
+        fetchSellers();
+        cancelAdd('vendedorForm');
+    })
+    .catch(error => console.error('Erro ao editar vendedor:', error));
+}
+
+function deleteSeller(sellerId) {
+    fetch(`./api/sellers.php?id=${sellerId}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao excluir vendedor');
+        fetchSellers();
+    })
+    .catch(error => console.error('Erro ao excluir vendedor:', error));
+}
+
+function fetchUsers() {
+    fetch('./api/users.php')
+        .then(response => response.json())
+        .then(data => {
+            const userTableBody = document.getElementById('userTableBody');
+            userTableBody.innerHTML = '';
+            data.forEach(user => {
+                userTableBody.innerHTML += `
+                    <tr>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td>${user.fone_number}</td>
+                        <td>${user.cpf_cnpj}</td>
+                        <td>
+                            <button onclick="editUser(${user.id}, '${user.name}', '${user.email}')" class="btn btn-warning">Editar</button>
+                            <button onclick="deleteUser(${user.id})" class="btn btn-danger">Excluir</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        })
+        .catch(error => console.error('Erro ao buscar usuários:', error));
 }
 
 function addUser(event) {
     event.preventDefault();
     const user = {
-        id: usuarios.length + 1,
         name: document.getElementById('user_name').value,
         email: document.getElementById('user_email').value,
-        phone_number: document.getElementById('user_phone').value,
-        address: document.getElementById('user_address').value
+        fone_number: '',
+        cpf_cnpj: ''
     };
-    usuarios.push(user);
-    displayUsers();
-    cancelAdd('userForm');
+
+    fetch('./api/users.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao adicionar usuário');
+        return response.json();
+    })
+    .then(() => {
+        fetchUsers();
+        cancelAdd('userForm');
+    })
+    .catch(error => console.error('Erro ao adicionar usuário:', error));
 }
 
-function displayUsers() {
-    const userList = document.getElementById('user-list');
-    userList.innerHTML = '<h3>Lista de Usuários</h3>' + usuarios.map(u => `
-        <div class="card mb-2">
-            <div class="card-body">
-                <h5 class="card-title">${u.name}</h5>
-                <p class="card-text">Email: ${u.email}</p>
-                <p>Telefone: ${u.phone_number}</p>
-                <p>Endereço: ${u.address}</p>
-            </div>
-        </div>
-    `).join('');
+function editUser(userId, name, email) {
+    document.getElementById('user_name').value = name;
+    document.getElementById('user_email').value = email;
+
+    const userForm = document.getElementById('userForm');
+    userForm.onsubmit = (event) => updateUser(event, userId);
+    openForm('userForm');
 }
 
-function addEndereco(event) {
+function updateUser(event, userId) {
     event.preventDefault();
-    const endereco = {
-        id: enderecos.length + 1,
-        street: document.getElementById('street').value,
-        number: parseInt(document.getElementById('number').value),
-        complement: document.getElementById('complement').value,
-        city: document.getElementById('city').value,
-        state: document.getElementById('state').value,
-        country: document.getElementById('country').value,
-        postal_code: document.getElementById('postal_code').value
+    const user = {
+        name: document.getElementById('user_name').value,
+        email: document.getElementById('user_email').value,
+        fone_number: '',
+        cpf_cnpj: ''
     };
-    enderecos.push(endereco);
-    displayEnderecos();
-    cancelAdd('enderecoForm');
+
+    fetch(`./api/users.php?id=${userId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao editar usuário');
+        return response.json();
+    })
+    .then(() => {
+        fetchUsers();
+        cancelAdd('userForm');
+    })
+    .catch(error => console.error('Erro ao editar usuário:', error));
 }
 
-function displayEnderecos() {
-    const enderecoList = document.getElementById('endereco-list');
-    enderecoList.innerHTML = '<h3>Lista de Endereços</h3>' + enderecos.map(e => `
-        <div class="card mb-2">
-            <div class="card-body">
-                <p><strong>Rua:</strong> ${e.street}, ${e.number}</p>
-                <p><strong>Complemento:</strong> ${e.complement}</p>
-                <p><strong>Cidade:</strong> ${e.city}</p>
-                <p><strong>Estado:</strong> ${e.state}</p>
-                <p><strong>País:</strong> ${e.country}</p>
-                <p><strong>Código Postal:</strong> ${e.postal_code}</p>
-            </div>
-        </div>
-    `).join('');
-}
-
-function addAvaliacaoProduto(event) {
-    event.preventDefault();
-    const avaliacaoProduto = {
-        id: avaliacoesProdutos.length + 1,
-        rating: parseInt(document.getElementById('rating_produto').value),
-        comment: document.getElementById('comment_produto').value
-    };
-    avaliacoesProdutos.push(avaliacaoProduto);
-    displayAvaliacoesProdutos();
-    cancelAdd('avaliacaoProdutoForm');
-}
-
-function displayAvaliacoesProdutos() {
-    const avaliacaoProdutoList = document.getElementById('avaliacaoProduto-list');
-    avaliacaoProdutoList.innerHTML = '<h3>Lista de Avaliações de Produtos</h3>' + avaliacoesProdutos.map(a => `
-        <div class="card mb-2">
-            <div class="card-body">
-                <p>Avaliação: ${a.rating}</p>
-                <p>Comentário: ${a.comment}</p>
-            </div>
-        </div>
-    `).join('');
-}
-
-function addAvaliacaoVendedor(event) {
-    event.preventDefault();
-    const avaliacaoVendedor = {
-        id: avaliacoesVendedores.length + 1,
-        rating: parseInt(document.getElementById('rating_vendedor').value),
-        reviews_count: parseInt(document.getElementById('reviews_count').value),
-        sales_count: parseInt(document.getElementById('sales_count_vendedor').value)
-    };
-    avaliacoesVendedores.push(avaliacaoVendedor);
-    displayAvaliacoesVendedores();
-    cancelAdd('avaliacaoVendedorForm');
-}
-
-function displayAvaliacoesVendedores() {
-    const avaliacaoVendedorList = document.getElementById('avaliacaoVendedor-list');
-    avaliacaoVendedorList.innerHTML = '<h3>Lista de Avaliações de Vendedores</h3>' + avaliacoesVendedores.map(a => `
-        <div class="card mb-2">
-            <div class="card-body">
-                <p>Avaliação: ${a.rating}</p>
-                <p>Contagem de Comentários: ${a.reviews_count}</p>
-                <p>Contagem de Vendas: ${a.sales_count}</p>
-            </div>
-        </div>
-    `).join('');
-}
-
-function addStatus(event) {
-    event.preventDefault();
-    const status = {
-        id: statusVendedores.length + 1,
-        status: document.getElementById('status').value
-    };
-    statusVendedores.push(status);
-    displayStatus();
-    cancelAdd('statusForm');
-}
-
-function displayStatus() {
-    const statusList = document.getElementById('status-list');
-    statusList.innerHTML = '<h3>Lista de Status de Vendedores</h3>' + statusVendedores.map(s => `
-        <div class="card mb-2">
-            <div class="card-body">
-                <p>Status: ${s.status}</p>
-            </div>
-        </div>
-    `).join('');
+function deleteUser(userId) {
+    fetch(`./api/users.php?id=${userId}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Erro ao excluir usuário');
+        fetchUsers();
+    })
+    .catch(error => console.error('Erro ao excluir usuário:', error));
 }

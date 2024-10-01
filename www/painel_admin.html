@@ -45,10 +45,6 @@
                     <li class="nav-item"><a class="nav-link" href="#crud-produtos">Produtos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#crud-vendedores">Vendedores</a></li>
                     <li class="nav-item"><a class="nav-link" href="#crud-usuarios">Usuários</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#crud-enderecos">Endereços</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#crud-avaliacoes-produtos">Avaliações de Produtos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#crud-avaliacoes-vendedores">Avaliações de Vendedores</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#crud-status">Status de Vendedores</a></li>
                 </ul>
             </nav>
         </header>
@@ -62,79 +58,84 @@
                     <form class="form-container" onsubmit="addProduct(event)">
                         <h2>Adicionar Produto</h2>
                         <div class="form-group">
-                            <label for="title">Título:</label>
-                            <input type="text" class="form-control" id="title" required>
+                            <label for="product_title">Título:</label>
+                            <input type="text" class="form-control" id="product_title" required>
                         </div>
                         <div class="form-group">
-                            <label for="description">Descrição:</label>
-                            <input type="text" class="form-control" id="description" required>
+                            <label for="product_description">Descrição:</label>
+                            <input type="text" class="form-control" id="product_description" required>
                         </div>
                         <div class="form-group">
-                            <label for="price">Preço:</label>
-                            <input type="number" class="form-control" id="price" required>
+                            <label for="product_price">Preço:</label>
+                            <input type="number" class="form-control" id="product_price" required>
                         </div>
                         <div class="form-group">
-                            <label for="discount">Desconto:</label>
-                            <input type="number" class="form-control" id="discount">
-                        </div>
-                        <div class="form-group">
-                            <label for="url_image">URL da Imagem:</label>
-                            <input type="text" class="form-control" id="url_image" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="sales_count">Quantidade Vendida:</label>
-                            <input type="number" class="form-control" id="sales_count" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="avaliation">Avaliação:</label>
-                            <input type="number" class="form-control" id="avaliation" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="saller_id">ID do Vendedor:</label>
-                            <input type="number" class="form-control" id="saller_id" required>
+                            <label for="product_url_image">URL da Imagem:</label>
+                            <input type="text" class="form-control" id="product_url_image" required>
                         </div>
                         <button type="submit" class="btn btn-success">Adicionar</button>
                         <button type="button" class="btn btn-secondary btn-cancel" onclick="cancelAdd('productForm')">Cancelar</button>
                     </form>
                 </div>
-                <div id="product-list" class="mt-4"></div>
+                <div id="product-list" class="mt-4">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Descriçao</th>
+                                <th>Imagem</th>
+                                <th>Preço</th>
+                                <th>Desconto</th>
+                                <th>Vendas</th>
+                                <th>Estoque</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody">
+                            
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
-            <!-- CRUD Vendedores -->
+            
             <section id="crud-vendedores" class="mb-5">
                 <h2>Gerenciar Vendedores</h2>
                 <button class="btn btn-primary" onclick="openForm('vendedorForm')">Adicionar Vendedor</button>
                 <div id="vendedorForm" class="form-popup">
-                    <form class="form-container" onsubmit="addVendedor(event)">
+                    <form class="form-container" onsubmit="addSeller(event)">
                         <h2>Adicionar Vendedor</h2>
                         <div class="form-group">
-                            <label for="vendedor_name">Nome:</label>
-                            <input type="text" class="form-control" id="vendedor_name" required>
+                            <label for="seller_name">Nome:</label>
+                            <input type="text" class="form-control" id="seller_name" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone_number">Telefone:</label>
-                            <input type="text" class="form-control" id="phone_number" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="cpf_cnpj">CPF/CNPJ:</label>
-                            <input type="text" class="form-control" id="cpf_cnpj" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="avaliation_id">ID da Avaliação:</label>
-                            <input type="number" class="form-control" id="avaliation_id" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="vendedor_address">Endereço:</label>
-                            <input type="text" class="form-control" id="vendedor_address" required>
+                            <label for="seller_email">Email:</label>
+                            <input type="email" class="form-control" id="seller_email" required>
                         </div>
                         <button type="submit" class="btn btn-success">Adicionar</button>
                         <button type="button" class="btn btn-secondary btn-cancel" onclick="cancelAdd('vendedorForm')">Cancelar</button>
                     </form>
                 </div>
-                <div id="vendedor-list" class="mt-4"></div>
+                <div id="vendedor-list" class="mt-4">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Telefone</th>
+                                <th>CPF OU CPNJ</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vendedorTableBody">
+                            
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
-            <!-- CRUD Usuários -->
+            
             <section id="crud-usuarios" class="mb-5">
                 <h2>Gerenciar Usuários</h2>
                 <button class="btn btn-primary" onclick="openForm('userForm')">Adicionar Usuário</button>
@@ -149,129 +150,31 @@
                             <label for="user_email">Email:</label>
                             <input type="email" class="form-control" id="user_email" required>
                         </div>
-                        <div class="form-group">
-                            <label for="user_phone">Telefone:</label>
-                            <input type="text" class="form-control" id="user_phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="user_address">Endereço:</label>
-                            <input type="text" class="form-control" id="user_address" required>
-                        </div>
                         <button type="submit" class="btn btn-success">Adicionar</button>
                         <button type="button" class="btn btn-secondary btn-cancel" onclick="cancelAdd('userForm')">Cancelar</button>
                     </form>
                 </div>
-                <div id="user-list" class="mt-4"></div>
-            </section>
-
-            <!-- CRUD Endereços -->
-            <section id="crud-enderecos" class="mb-5">
-                <h2>Gerenciar Endereços</h2>
-                <button class="btn btn-primary" onclick="openForm('enderecoForm')">Adicionar Endereço</button>
-                <div id="enderecoForm" class="form-popup">
-                    <form class="form-container" onsubmit="addEndereco(event)">
-                        <h2>Adicionar Endereço</h2>
-                        <div class="form-group">
-                            <label for="street">Rua:</label>
-                            <input type="text" class="form-control" id="street" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="number">Número:</label>
-                            <input type="number" class="form-control" id="number" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="complement">Complemento:</label>
-                            <input type="text" class="form-control" id="complement">
-                        </div>
-                        <div class="form-group">
-                            <label for="city">Cidade:</label>
-                            <input type="text" class="form-control" id="city" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="state">Estado:</label>
-                            <input type="text" class="form-control" id="state" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="country">País:</label>
-                            <input type="text" class="form-control" id="country" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="postal_code">Código Postal:</label>
-                            <input type="text" class="form-control" id="postal_code" required>
-                        </div>
-                        <button type="submit" class="btn btn-success">Adicionar</button>
-                        <button type="button" class="btn btn-secondary btn-cancel" onclick="cancelAdd('enderecoForm')">Cancelar</button>
-                    </form>
+                <div id="user-list" class="mt-4">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Numero</th>
+                                <th>CPF ou CNPJ</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            
+                        </tbody>
+                    </table>
                 </div>
-                <div id="endereco-list" class="mt-4"></div>
-            </section>
-
-            <!-- CRUD Avaliações de Produtos -->
-            <section id="crud-avaliacoes-produtos" class="mb-5">
-                <h2>Gerenciar Avaliações de Produtos</h2>
-                <button class="btn btn-primary" onclick="openForm('avaliacaoProdutoForm')">Adicionar Avaliação</button>
-                <div id="avaliacaoProdutoForm" class="form-popup">
-                    <form class="form-container" onsubmit="addAvaliacaoProduto(event)">
-                        <h2>Adicionar Avaliação de Produto</h2>
-                        <div class="form-group">
-                            <label for="rating_produto">Avaliação:</label>
-                            <input type="number" class="form-control" id="rating_produto" min="0" max="5" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="comment_produto">Comentário:</label>
-                            <input type="text" class="form-control" id="comment_produto" required>
-                        </div>
-                        <button type="submit" class="btn btn-success">Adicionar</button>
-                        <button type="button" class="btn btn-secondary btn-cancel" onclick="cancelAdd('avaliacaoProdutoForm')">Cancelar</button>
-                    </form>
-                </div>
-                <div id="avaliacaoProduto-list" class="mt-4"></div>
-            </section>
-
-            <!-- CRUD Avaliações de Vendedores -->
-            <section id="crud-avaliacoes-vendedores" class="mb-5">
-                <h2>Gerenciar Avaliações de Vendedores</h2>
-                <button class="btn btn-primary" onclick="openForm('avaliacaoVendedorForm')">Adicionar Avaliação</button>
-                <div id="avaliacaoVendedorForm" class="form-popup">
-                    <form class="form-container" onsubmit="addAvaliacaoVendedor(event)">
-                        <h2>Adicionar Avaliação de Vendedor</h2>
-                        <div class="form-group">
-                            <label for="rating_vendedor">Avaliação:</label>
-                            <input type="number" class="form-control" id="rating_vendedor" min="0" max="5" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="reviews_count">Contagem de Comentários:</label>
-                            <input type="number" class="form-control" id="reviews_count" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="sales_count_vendedor">Contagem de Vendas:</label>
-                            <input type="number" class="form-control" id="sales_count_vendedor" required>
-                        </div>
-                        <button type="submit" class="btn btn-success">Adicionar</button>
-                        <button type="button" class="btn btn-secondary btn-cancel" onclick="cancelAdd('avaliacaoVendedorForm')">Cancelar</button>
-                    </form>
-                </div>
-                <div id="avaliacaoVendedor-list" class="mt-4"></div>
-            </section>
-
-            <!-- CRUD Status de Vendedores -->
-            <section id="crud-status" class="mb-5">
-                <h2>Gerenciar Status de Vendedores</h2>
-                <button class="btn btn-primary" onclick="openForm('statusForm')">Adicionar Status</button>
-                <div id="statusForm" class="form-popup">
-                    <form class="form-container" onsubmit="addStatus(event)">
-                        <h2>Adicionar Status de Vendedor</h2>
-                        <div class="form-group">
-                            <label for="status">Status:</label>
-                            <input type="text" class="form-control" id="status" required>
-                        </div>
-                        <button type="submit" class="btn btn-success">Adicionar</button>
-                        <button type="button" class="btn btn-secondary btn-cancel" onclick="cancelAdd('statusForm')">Cancelar</button>
-                    </form>
-                </div>
-                <div id="status-list" class="mt-4"></div>
             </section>
         </main>
     </div>
+
+    <script src="./js/script.js"></script>
 </body>
+
 </html>
