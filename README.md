@@ -1,3 +1,12 @@
+# Micro E-commerce
+![Header do Site](images/fotosite.png)
+
+## Tecnologias básicas
+O catálogo foi desenvolvido utilizando o tríade básica do front-end (HTML, CSS, Javascript). Foi desenvolvido para testar e aprimorar habilidades relacionadas no desenvolvimento web.
+
+## CRUD em JSON
+Create, read, update e delete de um array com objects em Json. Atualmente o projeto simula a tela de um administrador inserindo novos produtos, usuários e vendedores em um micro e-commerce.
+
 # CRUD-PHP
 ## Desafio: 
 Regras do desafio:
