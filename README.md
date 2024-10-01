@@ -29,7 +29,7 @@ Esse projeto utiliza três conteiners, nos quais todos estão orquestrados dentr
 ## Iniciando o Servidor
 Para iniciar o servidor e rodar nossa aplicação, será necessário o `docker` e o `docker compos` instalado seguindo os `#Passos Iniciais`, quando todas as dependências necessárias estiverem adicionadas e configuradas, utilize o comando a seguir: 
 ```
-sudo docker compose up -d
+sudo docker compose up -d --build
 ```
 
 ## Referências
