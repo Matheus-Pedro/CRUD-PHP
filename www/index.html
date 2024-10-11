@@ -18,241 +18,245 @@
           <li><a href="#produto">Produto</a></li>
           <li><a href="#ultimos">Premium</a></li>
           <li><a href="#contato">Contato</a></li>
-          <li><a href="#conta">Conta</a></li>
+          <li><a href="./conta.html">Conta</a></li>
         </ul>
       </nav>
+
       <div class="nav-icon-container">
         <a href="carrinho.html" title="Ver Carrinho">
-        <img src="/images/cart.png" alt="Carrinho">
+          <img src="/images/cart.png" alt="Carrinho">
         </a>
         <img src="/images/menu.png" class="menu-button">
-      
-        <button class="login-button" onclick="window.location.href='/login.html'">Login</button>
+        <button class="login-button" id="loginButton" onclick="window.location.href='/login.html'">Login</button>
+        <span id="userInfo" style="display: none;"></span>
       </div>
+
     </div>
   </div>
 </body>
 
 
-  <header>
-    <div class="header-inner-content">
-      <div class="header-bottom-side">
-        <div class="header-bottom-side-left">
-          <h2>Dê um toque moderno ao seu trabalho!</h2>
-          <p>
-            Sucesso não se trata sempre de ser grandioso, mas de ser consistente.
-            O esforço contínuo e disciplinado acaba levando à grandeza.
-          </p>
-          <button>Ver Mais &#8594;</button>
-        </div>
-        <div class="header-bottom-side-right">
-          <img src="/images/gaming-msi-header.png" alt="img-header" />
-        </div>
+<header>
+  <div class="header-inner-content">
+    <div class="header-bottom-side">
+      <div class="header-bottom-side-left">
+        <h2>Dê um toque moderno ao seu trabalho!</h2>
+        <p>
+          Sucesso não se trata sempre de ser grandioso, mas de ser consistente.
+          O esforço contínuo e disciplinado acaba levando à grandeza.
+        </p>
+        <button>Ver Mais &#8594;</button>
+      </div>
+      <div class="header-bottom-side-right">
+        <img src="/images/gaming-msi-header.png" alt="img-header" />
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main>
-    <div class="black-background">
-      <div class="page-inner-content">
-        <div class="cols cols-3">
-          <img src="/images/product-1.png" alt="" />
-          <img src="/images/product-2.png" alt="" />
-          <img src="/images/product-3.png" alt="" />
-        </div>
+<main>
+  <div class="black-background">
+    <div class="page-inner-content">
+      <div class="cols cols-3">
+        <img src="/images/product-1.png" alt="" />
+        <img src="/images/product-2.png" alt="" />
+        <img src="/images/product-3.png" alt="" />
       </div>
     </div>
-    <div>
-      <div class="page-inner-content" id="produto">
-        <h3 class="section-title"> Produtos Selecionados</h3>
+  </div>
+  <div>
+    <div class="page-inner-content" id="produto">
+      <h3 class="section-title"> Produtos Selecionados</h3>
+      <div class="subtitle-underline"></div>
+      <div class="cols cols-4">
+        <div class="product">
+          <img src="/images/product-4.png" alt="" />
+          <p class="product-name">Combo Gamer</p>
+          <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
+          <p class="product-price">R$<span>150,00</span></p>
+          <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+          <img src="/images/product-5.png" alt="" />
+          <p class="product-name">Msi geFORE Gtx 1650</p>
+          <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p class="product-price">R$<span>1300,00</span></p>
+          <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+          <img src="/images/product-6.png" alt="" />
+          <p class="product-name">controle PS5</p>
+          <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p class="product-price">R$<span>400,00</span></p>
+          <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+          <img src="/images/product-7.png" alt="" />
+          <p class="product-name">Cadeira gamer</p>
+          <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
+          <p class="product-price">R$<span>1500,00</span></p>
+          <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+      <div class="page-inner-content" id="ultimos">
+        <h3 class="section-title "> Ultimos Produtos</h3>
         <div class="subtitle-underline"></div>
         <div class="cols cols-4">
           <div class="product">
-            <img src="/images/product-4.png" alt="" />
-            <p class="product-name">Combo Gamer</p>
-            <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-            <p class="product-price">R$<span>150,00</span></p>
+            <img src="/images/product-8.png" alt="" />
+            <p class="product-name">Iphone 14 Pro Max 512gb</p>
+            <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+            <p class="product-price">R$<span>7750,00</span></p>
             <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
           </div>
           <div class="product">
-            <img src="/images/product-5.png" alt="" />
-            <p class="product-name">Msi geFORE Gtx 1650</p>
+            <img src="/images/product-9.png" alt="" />
+            <p class="product-name">Samsung Galaxy S23 Ultra 1TB</p>
             <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
             <p class="product-price">R$<span>1300,00</span></p>
             <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
           </div>
           <div class="product">
-            <img src="/images/product-6.png" alt="" />
-            <p class="product-name">controle PS5</p>
+            <img src="/images/product-10.png" alt="" />
+            <p class="product-name">Asus Rog Phone 3 Gamer</p>
             <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-            <p class="product-price">R$<span>400,00</span></p>
+            <p class="product-price">R$<span>4000,00</span></p>
             <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
           </div>
           <div class="product">
-            <img src="/images/product-7.png" alt="" />
-            <p class="product-name">Cadeira gamer</p>
+            <img src="/images/product-11.png" alt="" />
+            <p class="product-name">Xiaome 13 Ultra 1TB</p>
             <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-            <p class="product-price">R$<span>1500,00</span></p>
+            <p class="product-price">R$<span>3500,00</span></p>
+            <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
+          </div>
+          <div class="product">
+            <img src="/images/product-12.png" alt="" />
+            <p class="product-name">xbox series x</p>
+            <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
+            <p class="product-price">R$<span>3400,00</span></p>
+            <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
+          </div>
+          <div class="product">
+            <img src="/images/product-13.png" alt="" />
+            <p class="product-name">Volante GT480 Ferrari</p>
+            <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+            <p class="product-price">R$<span>1300,00</span></p>
+            <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
+          </div>
+          <div class="product">
+            <img src="/images/product-14.png" alt="" />
+            <p class="product-name">PS5</p>
+            <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+            <p class="product-price">R$<span>4400,00</span></p>
+            <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
+          </div>
+          <div class="product">
+            <img src="/images/product-15.png" alt="" />
+            <p class="product-name">Pc Gamer</p>
+            <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
+            <p class="product-price">R$<span>5200,00</span></p>
             <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
           </div>
         </div>
-        <div class="page-inner-content" id="ultimos">
-          <h3 class="section-title "> Ultimos Produtos</h3>
-          <div class="subtitle-underline"></div>
-          <div class="cols cols-4">
-            <div class="product">
-              <img src="/images/product-8.png" alt="" />
-              <p class="product-name">Iphone 14 Pro Max 512gb</p>
-              <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-              <p class="product-price">R$<span>7750,00</span></p>
-              <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
-            </div>
-            <div class="product">
-              <img src="/images/product-9.png" alt="" />
-              <p class="product-name">Samsung Galaxy S23 Ultra 1TB</p>
-              <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-              <p class="product-price">R$<span>1300,00</span></p>
-              <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
-            </div>
-            <div class="product">
-              <img src="/images/product-10.png" alt="" />
-              <p class="product-name">Asus Rog Phone 3 Gamer</p>
-              <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-              <p class="product-price">R$<span>4000,00</span></p>
-              <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
-            </div>
-            <div class="product">
-              <img src="/images/product-11.png" alt="" />
-              <p class="product-name">Xiaome 13 Ultra 1TB</p>
-              <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-              <p class="product-price">R$<span>3500,00</span></p>
-              <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
-            </div>
-            <div class="product">
-              <img src="/images/product-12.png" alt="" />
-              <p class="product-name">xbox series x</p>
-              <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-              <p class="product-price">R$<span>3400,00</span></p>
-              <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
-            </div>
-            <div class="product">
-              <img src="/images/product-13.png" alt="" />
-              <p class="product-name">Volante GT480 Ferrari</p>
-              <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-              <p class="product-price">R$<span>1300,00</span></p>
-              <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
-            </div>
-            <div class="product">
-              <img src="/images/product-14.png" alt="" />
-              <p class="product-name">PS5</p>
-              <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-              <p class="product-price">R$<span>4400,00</span></p>
-              <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
-            </div>
-            <div class="product">
-              <img src="/images/product-15.png" alt="" />
-              <p class="product-name">Pc Gamer</p>
-              <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-              <p class="product-price">R$<span>5200,00</span></p>
-              <button class="btn btn-primary add-to-cart">Adicionar ao Carrinho</button>
-            </div>
-          </div>
-        </div>
       </div>
-
-      <div class="black-background">
-        <div class="header-inner-content">
-          <div class="header-bottom-side exclusive-container">
-            <div class="header-bottom-side-left">
-              <h2>Smart Band 4</h2>
-              <p>
-                A Smart Band 4 Vermelha combina estilo e funcionalidade, com visor AMOLED colorido, monitoramento de
-                frequência cardíaca, sono, atividades físicas, e resistência à água.
-                Oferece controle de música, notificações de chamadas e até 14 dias de bateria, sendo compatível com
-                Android e iOS.
-              </p>
-              <button>Ver Mais &#8594;</button>
-            </div>
-            <div class="header-bottom-side-right">
-              <img src="/images/exclusive.png" alt="img-header" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="page-inner-content">
-          <div class="avaliaçoes">
-            <div class="avaliação">
-              <p>"</p>
-              <p>"Produto de ótima qualidade! A entrega foi rápida e o item chegou bem embalado.
-                 O único ponto que poderia melhorar é a variedade de cores disponíveis. Recomendo!"</p>
-              <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-              <p>Gabriela</p>
-            </div>
-            <div class="avaliação">
-              <p>"</p>
-              <p>"O produto é bom, mas achei o preço um pouco alto para o que oferece. A entrega atrasou um dia, mas foi compensado pelo suporte amigável. 
-                Consideraria comprar novamente se o preço for ajustado."</p>
-              <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-              <p>Carlos</p>
-            </div>
-            <div class="avaliação">
-              <p>"</p>
-              <p>"Estou muito satisfeita com minha compra. 
-                O atendimento ao cliente foi excelente e o produto superou minhas expectativas. 
-                Com certeza, voltarei a comprar!"</p>
-              <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-              <p>Heloisa</p>
-            </div>
-          </div>
-        </div>
-      </div>
-  </main>
-
-
-  <footer>
-    <div class="footer-container " id="contato">
-        <div class="about blac">
-            <h3>Sobre Nós</h3>
-            <p>Bem-vindo à nossa loja online! Estamos comprometidos em oferecer os melhores produtos e serviços para nossos clientes. Nossa missão é proporcionar uma experiência de compra excepcional.</p>
-        </div>
-        <div class="contact">
-            <h3>Atendimento ao Cliente</h3>
-            <p>Email: <a href="mailto:suporte@exemplo.com">suporte@exemplo.com</a></p>
-            <p>Telefone: (11) 1234-5678</p>
-            <p>Horário de atendimento: Seg - Sex, das 9h às 18h</p>
-        </div>
-        <div class="links">
-            <h3>Links Úteis</h3>
-            <ul>
-                <li><a href="#">Política de Privacidade</a></li>
-                <li><a href="#">Termos de Uso</a></li>
-                <li><a href="#">Frete e Entrega</a></li>
-                <li><a href="#">Trocas e Devoluções</a></li>
-            </ul>
-        </div>
-        <div class="social">
-            <h3>Siga-nos</h3>
-            <p>Fique por dentro das novidades e promoções!</p>
-            <p><a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a></p>
-        </div>
-        <div class="payment">
-            <h3>Forma de Pagamento</h3>
-            <p>Aceitamos diversos métodos de pagamento: Cartão de Crédito, Boleto Bancário, e mais.</p>
-        </div>
-        <div class="address">
-            <h3>Endereço</h3>
-            <p>Rua Exemplo, 123, Bairro, Cidade, Estado, CEP: 00000-000</p>
-        </div>
     </div>
 
-    <div class="copyright">
-      <p>&copy; <span id="currentYear"></span> FlexForge. Todos os direitos reservados.</p>
+    <div class="black-background">
+      <div class="header-inner-content">
+        <div class="header-bottom-side exclusive-container">
+          <div class="header-bottom-side-left">
+            <h2>Smart Band 4</h2>
+            <p>
+              A Smart Band 4 Vermelha combina estilo e funcionalidade, com visor AMOLED colorido, monitoramento de
+              frequência cardíaca, sono, atividades físicas, e resistência à água.
+              Oferece controle de música, notificações de chamadas e até 14 dias de bateria, sendo compatível com
+              Android e iOS.
+            </p>
+            <button>Ver Mais &#8594;</button>
+          </div>
+          <div class="header-bottom-side-right">
+            <img src="/images/exclusive.png" alt="img-header" />
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div>
+      <div class="page-inner-content">
+        <div class="avaliaçoes">
+          <div class="avaliação">
+            <p>"</p>
+            <p>"Produto de ótima qualidade! A entrega foi rápida e o item chegou bem embalado.
+              O único ponto que poderia melhorar é a variedade de cores disponíveis. Recomendo!"</p>
+            <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+            <p>Gabriela</p>
+          </div>
+          <div class="avaliação">
+            <p>"</p>
+            <p>"O produto é bom, mas achei o preço um pouco alto para o que oferece. A entrega atrasou um dia, mas foi
+              compensado pelo suporte amigável.
+              Consideraria comprar novamente se o preço for ajustado."</p>
+            <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
+            <p>Carlos</p>
+          </div>
+          <div class="avaliação">
+            <p>"</p>
+            <p>"Estou muito satisfeita com minha compra.
+              O atendimento ao cliente foi excelente e o produto superou minhas expectativas.
+              Com certeza, voltarei a comprar!"</p>
+            <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+            <p>Heloisa</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+
+
+<footer>
+  <div class="footer-container " id="contato">
+    <div class="about blac">
+      <h3>Sobre Nós</h3>
+      <p>Bem-vindo à nossa loja online! Estamos comprometidos em oferecer os melhores produtos e serviços para nossos
+        clientes. Nossa missão é proporcionar uma experiência de compra excepcional.</p>
+    </div>
+    <div class="contact">
+      <h3>Atendimento ao Cliente</h3>
+      <p>Email: <a href="mailto:suporte@exemplo.com">suporte@exemplo.com</a></p>
+      <p>Telefone: (11) 1234-5678</p>
+      <p>Horário de atendimento: Seg - Sex, das 9h às 18h</p>
+    </div>
+    <div class="links">
+      <h3>Links Úteis</h3>
+      <ul>
+        <li><a href="#">Política de Privacidade</a></li>
+        <li><a href="#">Termos de Uso</a></li>
+        <li><a href="#">Frete e Entrega</a></li>
+        <li><a href="#">Trocas e Devoluções</a></li>
+      </ul>
+    </div>
+    <div class="social">
+      <h3>Siga-nos</h3>
+      <p>Fique por dentro das novidades e promoções!</p>
+      <p><a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a></p>
+    </div>
+    <div class="payment">
+      <h3>Forma de Pagamento</h3>
+      <p>Aceitamos diversos métodos de pagamento: Cartão de Crédito, Boleto Bancário, e mais.</p>
+    </div>
+    <div class="address">
+      <h3>Endereço</h3>
+      <p>Rua Exemplo, 123, Bairro, Cidade, Estado, CEP: 00000-000</p>
+    </div>
+  </div>
+
+  <div class="copyright">
+    <p>&copy; <span id="currentYear"></span> FlexForge. Todos os direitos reservados.</p>
+  </div>
 </footer>
 
-  <script src="/js/index.js"></script>
+<script src="/js/index.js"></script>
 </body>
 
 </html>
