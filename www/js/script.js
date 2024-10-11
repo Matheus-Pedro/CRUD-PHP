@@ -10,9 +10,10 @@ function openForm(formId) {
 
 function cancelAdd(formId) {
     document.getElementById(formId).style.display = 'none';
-    document.getElementById(formId).reset(); 
+    document.getElementById(formId).reset();
 }
 
+// Fetch de Produtos
 function fetchProducts() {
     fetch('./api/products.php')
         .then(response => response.json())
@@ -31,7 +32,7 @@ function fetchProducts() {
                         <td>${product.stock}</td>
                         <td>
                             <button onclick="editProduct(${product.id}, '${product.title}', '${product.description}', ${product.price}, '${product.url_image}')" class="btn btn-warning">Editar</button>
-                            <button onclick="deleteProduct(${product.id})" class="btn btn-danger">Excluir</button>
+                            <button onclick="confirmDeleteProduct(${product.id})" class="btn btn-danger">Excluir</button>
                         </td>
                     </tr>
                 `;
@@ -40,6 +41,14 @@ function fetchProducts() {
         .catch(error => console.error('Erro ao buscar produtos:', error));
 }
 
+// Confirmar exclusão de produto
+function confirmDeleteProduct(productId) {
+    if (confirm('Tem certeza que deseja excluir este produto?')) {
+        deleteProduct(productId);
+    }
+}
+
+// Adicionar Produto
 function addProduct(event) {
     event.preventDefault();
     const product = {
@@ -67,6 +76,7 @@ function addProduct(event) {
     .catch(error => console.error('Erro ao adicionar produto:', error));
 }
 
+// Editar Produto
 function editProduct(productId, title, description, price, url_image) {
     document.getElementById('product_title').value = title;
     document.getElementById('product_description').value = description;
@@ -116,6 +126,7 @@ function deleteProduct(productId) {
     .catch(error => console.error('Erro ao excluir produto:', error));
 }
 
+// Fetch de Vendedores
 function fetchSellers() {
     fetch('./api/sellers.php')
         .then(response => response.json())
@@ -131,7 +142,7 @@ function fetchSellers() {
                         <td>${vendedor.cpf_cnpj}</td>
                         <td>
                             <button onclick="editSeller(${vendedor.id}, '${vendedor.name}', '${vendedor.email}')" class="btn btn-warning">Editar</button>
-                            <button onclick="deleteSeller(${vendedor.id})" class="btn btn-danger">Excluir</button>
+                            <button onclick="confirmDeleteSeller(${vendedor.id})" class="btn btn-danger">Excluir</button>
                         </td>
                     </tr>
                 `;
@@ -140,6 +151,14 @@ function fetchSellers() {
         .catch(error => console.error('Erro ao buscar vendedores:', error));
 }
 
+// Confirmar exclusão de vendedor
+function confirmDeleteSeller(sellerId) {
+    if (confirm('Tem certeza que deseja excluir este vendedor?')) {
+        deleteSeller(sellerId);
+    }
+}
+
+// Adicionar Vendedor
 function addSeller(event) {
     event.preventDefault();
     const seller = {
@@ -167,6 +186,7 @@ function addSeller(event) {
     .catch(error => console.error('Erro ao adicionar vendedor:', error));
 }
 
+// Editar Vendedor
 function editSeller(sellerId, name, email) {
     document.getElementById('seller_name').value = name;
     document.getElementById('seller_email').value = email;
@@ -214,6 +234,7 @@ function deleteSeller(sellerId) {
     .catch(error => console.error('Erro ao excluir vendedor:', error));
 }
 
+// Fetch de Usuários
 function fetchUsers() {
     fetch('./api/users.php')
         .then(response => response.json())
@@ -229,7 +250,7 @@ function fetchUsers() {
                         <td>${user.cpf_cnpj}</td>
                         <td>
                             <button onclick="editUser(${user.id}, '${user.name}', '${user.email}')" class="btn btn-warning">Editar</button>
-                            <button onclick="deleteUser(${user.id})" class="btn btn-danger">Excluir</button>
+                            <button onclick="confirmDeleteUser(${user.id})" class="btn btn-danger">Excluir</button>
                         </td>
                     </tr>
                 `;
@@ -238,6 +259,14 @@ function fetchUsers() {
         .catch(error => console.error('Erro ao buscar usuários:', error));
 }
 
+// Confirmar exclusão de usuário
+function confirmDeleteUser(userId) {
+    if (confirm('Tem certeza que deseja excluir este usuário?')) {
+        deleteUser(userId);
+    }
+}
+
+// Adicionar Usuário
 function addUser(event) {
     event.preventDefault();
     const user = {
@@ -265,6 +294,7 @@ function addUser(event) {
     .catch(error => console.error('Erro ao adicionar usuário:', error));
 }
 
+// Editar Usuário
 function editUser(userId, name, email) {
     document.getElementById('user_name').value = name;
     document.getElementById('user_email').value = email;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,52 @@
     <!--Boxicons CDN-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!--Custom CSS-->
-    <link rel="stylesheet" href="/css/login.css">
-
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 
-<body>
-    <!-- FOR SOURCE CODE COMMENT "CODE" -->
+<style>
+    .role-selection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
 
-    <div class="wrapper">
+    .role-selection h2 {
+        font-size: 24px;
+        color: var(--black);
+        margin-bottom: 20px;
+    }
+
+    .role-selection .btn {
+        background-color: var(--lightBulue);
+        color: var(--white);
+        border: none;
+        border-radius: 5px;
+        padding: 15px 25px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin: 5px 0;
+    }
+
+    .role-selection .btn:hover {
+        background-color: var(--black);
+        color: var(--white);
+    }
+</style>
+
+<body>
+
+    <div class="role-selection">
+        <h2>Escolha</h2>
+        <button class="btn" id="vendedorBtn">Vendedor</button>
+        <button class="btn" id="usuarioBtn">Usuário</button>
+    </div>
+
+
+    <div class="wrapper" style="display: none;">
         <span class="rotate-bg"></span>
         <span class="rotate-bg2"></span>
 
@@ -45,12 +84,6 @@
             <p class="animation" style="--i:1; --j:21">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Deleniti,rem?</p>
         </div>
-
-
-
-
-
-
 
         <div class="form-box register">
 
@@ -93,8 +126,29 @@
 
     </div>
 
-    <!--Script.js-->
+
     <script src="/js/login.js"></script>
+
+    <script>
+    
+        document.getElementById("vendedorBtn").addEventListener("click", function () {
+            document.querySelector(".role-selection").style.display = "none";
+            document.querySelector(".wrapper").style.display = "block";
+    
+            document.querySelector(".title").textContent = "Login Vendedor";
+            document.querySelector(".linkTxt a").textContent = "Cadastrar-se como Vendedor";
+        });
+
+        document.getElementById("usuarioBtn").addEventListener("click", function () {
+            document.querySelector(".role-selection").style.display = "none";
+            document.querySelector(".wrapper").style.display = "block";
+            
+            document.querySelector(".title").textContent = "Login Usuário";
+            document.querySelector(".linkTxt a").textContent = "Cadastrar-se como Usuário";
+        });
+    </script>
+
+    
 </body>
 
 </html>
