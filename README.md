@@ -43,3 +43,4 @@ sudo docker compose up -d --build
 
 ## Referências
 - [jrnunes1993](https://dev.to/jrnunes1993/como-criar-containers-com-php-mysql-e-nginx-utilizando-o-docker-compose-964)
+- https://fossengineer.com/selfhosting-cloudflared-tunnel-docker/

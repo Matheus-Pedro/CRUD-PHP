@@ -87,10 +87,9 @@ function editProduct(productId, title, description, price, url_image, discount) 
     document.getElementById('edit_product_url_image').value = url_image;
     document.getElementById('edit_product_discount').value = discount;
 
-
-    const productForm = document.getElementById('productForm');
+    const productForm = document.getElementById('editProductForm');
     productForm.onsubmit = (event) => updateProduct(event, productId);
-
+    console.log("passou no edit")
     openForm('editProductForm');
 }
 
@@ -122,6 +121,7 @@ function updateProduct(event, productId) {
     })
     .catch(error => console.error('Erro ao editar produto:', error));
 }
+
 
 function deleteProduct(productId) {
     const requestBody = {
