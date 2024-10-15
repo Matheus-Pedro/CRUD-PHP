@@ -51,7 +51,7 @@
 
         <main>
             <!-- CRUD Produtos -->
-            <section id="crud-produtos" class="mb-5">
+            <section id="crud-products" class="mb-5">
                 <h2>Gerenciar Produtos</h2>
                 <button class="btn btn-primary" onclick="openForm('productForm')">Adicionar Produto</button>
                 <div id="productForm" class="form-popup">
@@ -77,6 +77,36 @@
                         <button type="button" class="btn btn-secondary btn-cancel" onclick="cancelAdd('productForm')">Cancelar</button>
                     </form>
                 </div>
+
+                <div id="editProductForm" class="form-popup">
+                    <form class="form-container">
+                        <h2>Editar Usuário</h2>
+                        <div class="form-group">
+                            <label for="edit_product_title">Título:</label>
+                            <input type="text" class="form-control" id="edit_product_title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_product_description">Descrição:</label>
+                            <input type="text" class="form-control" id="edit_product_description" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_product_price">Preço:</label>
+                            <input type="number" class="form-control" id="edit_product_price" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_product_discount">Desconto:</label>
+                            <input type="number" class="form-control" id="edit_product_discount" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_product_url_image">URL da Imagem:</label>
+                            <input type="text" class="form-control" id="edit_product_url_image" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                        <button type="button" class="btn btn-secondary btn-cancel" onclick="cancelAdd('editProductForm')">Cancelar</button>
+                    </form>
+                </div>
+
+
                 <div id="product-list" class="mt-4">
                     <table class="table">
                         <thead>
@@ -117,6 +147,7 @@
                         <button type="button" class="btn btn-secondary btn-cancel" onclick="cancelAdd('vendedorForm')">Cancelar</button>
                     </form>
                 </div>
+
                 <div id="editSellerForm" class="form-popup">
                     <form class="form-container">
                         <h2>Editar Usuário</h2>
@@ -223,8 +254,10 @@
         </main>
     </div>
 
-    <script src="./js/user_admin.js"></script>
-    <script src="./js/seller_admin.js"></script>
+    <script src="./js/admin/product_admin.js"></script>
+    <script src="./js/admin/seller_admin.js"></script>
+    <script src="./js/admin/user_admin.js"></script>
+
 
 </body>
 
