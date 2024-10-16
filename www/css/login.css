@@ -4,7 +4,6 @@
     --white: #fff;
     --black: #000; 
     --lightBulue: #17a;
-    
 }
 
 *{
@@ -20,7 +19,6 @@ body{
     align-items: center;
     min-height: 100vh;
 }
-
 
 .wrapper{
     position: relative;
@@ -175,6 +173,10 @@ form .linkTxt{
 }
 
 
+
+
+
+
 .wrapper .info-text{
     position: absolute;
     top: 0;
@@ -222,6 +224,8 @@ form .linkTxt{
 
 
 
+
+
 .wrapper .rotate-bg{
     position: absolute;
     top: -4px;
@@ -239,6 +243,14 @@ form .linkTxt{
     transform: rotate(0) skewY(0);
     transition-delay: 0.5s;
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -297,6 +309,8 @@ form .linkTxt{
 }
 
 
+
+
 .wrapper .rotate-bg2{
     position: absolute;
     top: 100%;
@@ -314,5 +328,3 @@ form .linkTxt{
     transform: rotate(-11deg) skewY(-40deg);
     transition-delay: 1.2s;
 }
-
-

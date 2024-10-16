@@ -5,72 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Register form</title>
-    <!--Boxicons CDN-->
+    
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!--Custom CSS-->
     <link rel="stylesheet" href="./css/login.css">
 </head>
 
-<style>
-    .role-selection {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .role-selection h2 {
-        font-size: 24px;
-        color: var(--black);
-        margin-bottom: 20px;
-    }
-
-    .role-selection .btn {
-        background-color: var(--lightBulue);
-        color: var(--white);
-        border: none;
-        border-radius: 5px;
-        padding: 15px 25px;
-        font-size: 16px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        margin: 5px 0;
-    }
-
-    .role-selection .btn:hover {
-        background-color: var(--black);
-        color: var(--white);
-    }
-
-    .hidden {
-        display: none;
-    }
-</style>
-
 <body>
-
-    <div class="role-selection">
-        <h2>Escolha</h2>
-        <button class="btn" id="vendedorBtn">Vendedor</button>
-        <button class="btn" id="usuarioBtn">Usuário</button>
-    </div>
-
-    <div class="wrapper hidden">
+    <div class="wrapper">
         <span class="rotate-bg"></span>
         <span class="rotate-bg2"></span>
 
         <div class="form-box login">
             <h2 class="title animation" style="--i:0; --j:21">Login</h2>
-            <form action="#" id="loginForm">
+            <form id="login-form">
+
                 <div class="input-box animation" style="--i:1; --j:22">
-                    <input type="text" name="username" required>
+                    <input type="text" id="login-username" required>
                     <label for="">Username</label>
                     <i class='bx bxs-user'></i>
                 </div>
 
                 <div class="input-box animation" style="--i:2; --j:23">
-                    <input type="password" name="password" required>
+                    <input type="password" id="login-password" required>
                     <label for="">Password</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
@@ -83,27 +39,28 @@
 
         <div class="info-text login">
             <h2 class="animation" style="--i:0; --j:20">Welcome Back!</h2>
-            <p class="animation" style="--i:1; --j:21">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deleniti,rem?</p>
+            <p class="animation" style="--i:1; --j:21">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,rem?</p>
         </div>
 
-        <div class="form-box register hidden" id="cadastroForm">
+        <div class="form-box register">
             <h2 class="title animation" style="--i:17; --j:0">Sign Up</h2>
-            <form action="#" id="registerForm">
+
+            <form id="register-form">
+
                 <div class="input-box animation" style="--i:18; --j:1">
-                    <input type="text" name="name" required>
+                    <input type="text" id="register-username" required>
                     <label for="">Username</label>
                     <i class='bx bxs-user'></i>
                 </div>
 
                 <div class="input-box animation" style="--i:19; --j:2">
-                    <input type="email" name="email" required>
+                    <input type="email" id="register-email" required>
                     <label for="">Email</label>
                     <i class='bx bxs-envelope'></i>
                 </div>
 
                 <div class="input-box animation" style="--i:20; --j:3">
-                    <input type="password" name="password" required>
+                    <input type="password" id="register-password" required>
                     <label for="">Password</label>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
@@ -113,112 +70,81 @@
                 <div class="linkTxt animation" style="--i:22; --j:5">
                     <p>Already have an account? <a href="#" class="login-link">Login</a></p>
                 </div>
+
             </form>
         </div>
 
         <div class="info-text register">
             <h2 class="animation" style="--i:17; --j:0;">Welcome Back!</h2>
-            <p class="animation" style="--i:18; --j:1;">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Deleniti,rem?</p>
+            <p class="animation" style="--i:18; --j:1;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,rem?</p>
         </div>
-
     </div>
 
-    <script src="/js/login.js"></script>
-
     <script>
-        document.getElementById("vendedorBtn").addEventListener("click", function () {
-            document.querySelector(".role-selection").style.display = "none";
-            document.querySelector(".wrapper").style.display = "block";
+        const wrapper = document.querySelector('.wrapper');
+        const registerLink = document.querySelector('.register-link');
+        const loginLink = document.querySelector('.login-link');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
 
-            document.querySelector(".title").textContent = "Login Vendedor";
-            document.querySelector(".linkTxt a").textContent = "Cadastrar-se como Vendedor";
-            
-            
-            document.getElementById("cadastroForm").classList.add("hidden");
-            document.getElementById("loginForm").style.display = "block";
-        });
+        registerLink.onclick = () => {
+            wrapper.classList.add('active');
+        }
 
-        // document.getElementById("usuarioBtn").addEventListener("click", function () {
-        //     document.querySelector(".role-selection").style.display = "none";
-        //     document.querySelector(".wrapper").style.display = "block";
-
-        //     document.querySelector(".title").textContent = "Login Usuário";
-        //     document.querySelector(".linkTxt a").textContent = "Cadastrar-se como Usuário";
-            
-           
-        //     document.getElementById("cadastroForm").classList.add("hidden");
-        //     document.getElementById("loginForm").style.display = "block";
-        // });
+        loginLink.onclick = () => {
+            wrapper.classList.remove('active');
+        }
 
         
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const formData = new FormData(this);
-            const data = {
-                username: formData.get("username"),
-                password: formData.get("password")
-            };
-
-            fetch('./api/users.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.error) {
-                    alert(`Erro: ${result.error}`);
-                } else {
-                    alert('Login realizado com sucesso!');
-                    
-                     window.location.href = "index.html";
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Ocorreu um erro ao fazer login.');
-            });
-        });
-
-        
-        document.getElementById("registerForm").addEventListener("submit", function (event) {
+        loginForm.onsubmit = (event) => {
             event.preventDefault(); 
 
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get("name"),
-                email: formData.get("email"),
-                password: formData.get("password")
-            };
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
 
-            fetch('./api/users.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.error) {
-                    alert(`Erro: ${result.error}`);
+            
+            const storedUser = localStorage.getItem(username);
+            if (storedUser) {
+                const userData = JSON.parse(storedUser);
+                if (userData.password === password) {
+                    
+                    localStorage.setItem('loggedInUser', username);
+                    
+                    window.location.href = 'index.html';
                 } else {
-                    alert('Cadastro realizado com sucesso!');
-                   
-                    window.location.href = "index.html";
+                    alert('Senha incorreta!');
                 }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Ocorreu um erro ao cadastrar.');
-            });
-        });
-    </script>
+            } else {
+                alert('Usuário não encontrado! Cadastre uma conta.'); 
+            }
+        }
 
+        
+        registerForm.onsubmit = (event) => {
+            event.preventDefault(); 
+
+            const registerUsername = document.getElementById('register-username').value;
+            const registerPassword = document.getElementById('register-password').value;
+            const registerEmail = document.getElementById('register-email').value;
+
+            
+            if (localStorage.getItem(registerUsername)) {
+                alert('Usuário já existe! Tente um nome de usuário diferente.');
+                return;
+            }
+
+            
+            const newUser = {
+                username: registerUsername,
+                password: registerPassword,
+                email: registerEmail
+            };
+            localStorage.setItem(registerUsername, JSON.stringify(newUser));
+
+            alert('Cadastro realizado com sucesso! Você pode fazer login agora.');
+            wrapper.classList.remove('active'); 
+        }
+    </script>
 </body>
 
 </html>
